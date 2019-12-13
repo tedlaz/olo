@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbl.css' %}">
+  </head>
+
+  <body>
+    <button onclick="javascript:window.print()" class="no-print">Εκτύπωση αποδείξεων</button>
+    {% for diam in lines %}
+    <h1 align="center">{{ ptitle }}</h1>
+    <table class="tableNoOutline">
+      <tr>
+        <td>Ημερομηνία έκδοσης : {{ koinoxrista.ekdosi }}</td>
+      </tr>
+      <tr>
+        <td>Ιδιοκτήτης : {{ diam.diamerisma.owner }}</td>
+      </tr>
+      <tr>
+        <td>Ένοικος : <b>{{ diam.diamerisma.guest }}</b></td>
+      </tr>
+      <tr>
+        <td>Όροφος : {{ diam.diamerisma.orofos }}</td>
+      </tr>
+    </table>
+    <h2 align="center">Δαπάνες και αναλογία διαμερίσματος</h2>
+    <table border="1" cellpadding="1" cellspacing="0">
+      <tbody>
+        <tr>
+          {% for title in headers %}
+          <th align="center">{{ title }}</th>
+          {% endfor %}
+        </tr>
+        {% for line in diam.lines %}
+        <tr>
+          {% for column in line %}
+          <td align="{{ column.lcr }}">{{ column.val }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+        <tr>
+          {% for column in diam.footer1 %}
+          <td colspan={{ column.span }} align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    {% if koinoxrista.diaxeiristis.sex == 1 %}
+    <h3 align="center">Ο διαχειριστής ({{ koinoxrista.diaxeiristis }})</h3>
+    {% else %}
+    <h3 align="center">Η διαχειρίστρια ({{ koinoxrista.diaxeiristis }})</h3>
+    {% endif %}
+    <h4 align="center">(Υπογραφή)</h4>
+    <div class="pagebreak"> </div>
+    {% endfor %}
+  </body>
+
+</html>

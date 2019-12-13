@@ -1,0 +1,58 @@
+{% load static %}
+{% if koinoxrista_list %}
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbl.css' %}">
+  </head>
+
+  <body>
+    <h1 align="center"><b>Λίστα κοινοχρήστων</b></h1>
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th align="center">Ημερομηνία</th>
+          <th align="center">Αριθμός</th>
+          <th align="center">διαχειριστής</th>
+          <th align="center">Σχόλια</th>
+          <th align="center">Δαπάνες</th>
+          <th align="center">Κατανομή</th>
+          <th align="center">Αποδείξεις</th>
+        </tr>
+        {% for koin in koinoxrista_list %}
+        <tr>
+          <td align="center">{{ koin.ekdosi_gr }}</td>
+          {% if user.is_authenticated %}
+          <td align="center"><a href="{% url 'admin:koi_koinoxrista_change' koin.id %}">{{ koin.id }}</a></td>
+          {% else %}
+          <td align="center">{{ koin.id }}</td>
+          {% endif %}
+          <td align="center">{{ koin.diaxeiristis }}</td>
+          <td align="center">{{ koin.sxolia }}</td>
+          <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
+          <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">Κατανομή της {{ koin.ekdosi_gr }}</a>
+          </td>
+          {% if user.is_authenticated %}
+          <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">Αποδείξεις της
+              {{ koin.ekdosi_gr }}</a></td>
+          {% else %}
+          <td align="center"></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- <div class="pagebreak"> Αν θέλεις αλλαγή σελίδας εδώ-->
+    </div>
+    <br>
+    <button onclick="javascript:window.print()" class="no-print">Print</button>
+    <br>
+    <a class="no-print" href=" {% url 'koi:index' %}">Επιστροφή</a>
+    <a class="no-print" href=" {% url 'koi:xiliosta' %}">Χιλιοστά</a>
+  </body>
+
+</html>
+{% else %}
+<p>Δεν υπάρχουν ακόμα κοινόχρηστες δαπάνες</p>
+{% endif %}
