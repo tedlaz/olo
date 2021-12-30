@@ -72,6 +72,7 @@ class Koinoxrista(models.Model):
     diaxeiristis = models.ForeignKey(
         Diaxeiristis, on_delete=models.CASCADE, verbose_name='Διαχειριστής')
     sxolia = models.TextField(verbose_name='Σχόλια')
+    url = models.URLField(max_length=200, verbose_name='Αρχεία', default='#')
     published = models.BooleanField(default=False)
 
     @property

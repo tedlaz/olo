@@ -8,7 +8,7 @@
 
   <body>
     <h1 align="center"><span style="font-size:18pt; text-decoration:underline;"><b>ΚΟΙΝΟΧΡΗΣΤΕΣ ΔΑΠΑΝΕΣ ΤΗΣ
-          {{ koin.ekdosi_gr }}</b></span></h1>
+          {{ koin.ekdosi_gr }} {% if koin.url != '#' %}<a class="no-print" href="{{ koin.url }}">(Αρχεία)</a>{% endif %}</b></span></h1>
     <table cellspacing="0">
       <tbody>
         <tr>
