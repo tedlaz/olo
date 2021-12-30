@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 
 
@@ -9,7 +10,7 @@ class DapanesInline(admin.TabularInline):
 
 class KoinoxristaAdmin(admin.ModelAdmin):
     inlines = [DapanesInline]
-    list_display = ['ekdosi', 'id', 'diaxeiristis', 'sxolia']
+    list_display = ['ekdosi', 'id', 'diaxeiristis', 'sxolia', 'published']
     list_filter = ['ekdosi', 'diaxeiristis']
 
 

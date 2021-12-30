@@ -72,6 +72,7 @@ class Koinoxrista(models.Model):
     diaxeiristis = models.ForeignKey(
         Diaxeiristis, on_delete=models.CASCADE, verbose_name='Διαχειριστής')
     sxolia = models.TextField(verbose_name='Σχόλια')
+    published = models.BooleanField(default=False)
 
     @property
     def ekdosi_gr(self):

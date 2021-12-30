@@ -1,10 +1,12 @@
 """Test"""
 from collections import namedtuple
-from django.shortcuts import render, get_object_or_404
-from django.views import generic
+
 from django.db.models import Sum
-from utils.greek_utils import grdate, grnum
+from django.shortcuts import get_object_or_404, render
+from django.views import generic
 from utils.distribute import distr
+from utils.greek_utils import grdate, grnum
+
 from . import models as mdl
 
 
@@ -13,7 +15,7 @@ class IndexView(generic.ListView):
     context_object_name = 'koinoxrista_list'
 
     def get_queryset(self):
-        return mdl.Koinoxrista.objects.order_by('-ekdosi')
+        return mdl.Koinoxrista.objects.filter(published=True).order_by('-ekdosi')
 
 
 class DapanesView(generic.DetailView):
