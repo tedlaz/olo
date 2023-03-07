@@ -9,6 +9,8 @@
 
   <body>
     <h1 align="center"><b>Λίστα κοινοχρήστων</b></h1>
+    <a class="no-print" href=" {% url 'koi:xiliosta' %}">Χιλιοστά</a> |
+    <a class="no-print" href=" {% url 'admin:index' %}">Διαχειριστής</a>
     <table cellspacing="0">
       <tbody>
         <tr>
@@ -48,8 +50,7 @@
     <br>
     <button onclick="javascript:window.print()" class="no-print">Print</button>
     <br>
-    <a class="no-print" href=" {% url 'koi:xiliosta' %}">Χιλιοστά</a> |
-    <a class="no-print" href=" {% url 'admin:index' %}">Διαχειριστής</a>
+
   </body>
 
 </html>
