@@ -107,10 +107,10 @@ USE_TZ = True
 USE_THOUSAND_SEPARATOR = True
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_URL = '/static_collected/'
+STATIC_ROOT = BASE_DIR / 'static_collected/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True
