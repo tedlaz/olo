@@ -1,51 +1,42 @@
-{% load static %} {% if koinoxrista_list %}
+{% extends "koi/base.html" %} {% load static %} {% block content %}{% if koinoxrista_list %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbllandscape.css' %}" />
-  </head>
-
-  <body>
-    <h1 align="center"><b>Λίστα κοινοχρήστων</b></h1>
-    <a class="no-print" href=" {% url 'koi:xiliosta' %}">Χιλιοστά</a> |
-    <a class="no-print" href=" {% url 'admin:index' %}">Διαχειριστής</a>
-    <table cellspacing="0">
-      <tbody>
-        <tr>
-          <th align="center">Ημερομηνία</th>
-          <th align="center">Αριθμός</th>
-          <th align="center">διαχειριστής</th>
-          <th align="center">Σχόλια</th>
-          <th align="center">Δαπάνες</th>
-          <th align="center">Κατανομή</th>
-          <th align="center">Αποδείξεις</th>
-        </tr>
-        {% for koin in koinoxrista_list %}
-        <tr>
-          <td align="center">{{ koin.ekdosi_gr }}</td>
-          {% if user.is_authenticated %}
-          <td align="center"><a href="{% url 'admin:koi_koinoxrista_change' koin.id %}">{{ koin.id }}</a></td>
-          {% else %}
-          <td align="center">{{ koin.id }}</td>
-          {% endif %}
-          <td align="center">{{ koin.diaxeiristis }}</td>
-          <td align="center">{{ koin.sxolia }}</td>
-          <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
-          <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">Κατανομή της {{ koin.ekdosi_gr }}</a></td>
-          {% if user.is_authenticated %}
-          <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">Αποδείξεις της {{ koin.ekdosi_gr }}</a></td>
-          {% else %}
-          <td align="center"></td>
-          {% endif %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <br />
-    <button onclick="javascript:window.print()" class="no-print">Print</button>
-    <br />
-  </body>
-</html>
+<h2 align="center"><b>Κοινόχρηστα</b></h2>
+<div class="table-responsive">
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+        <th class="text-center">Ημ/νία</th>
+        <th class="text-center">Αριθμός</th>
+        <th class="text-center">διαχειριστής</th>
+        <th class="text-center">Σχόλια</th>
+        <th class="text-center">Δαπάνες</th>
+        <th class="text-center">Κατανομή</th>
+        <th class="text-center">Αποδείξεις</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for koin in koinoxrista_list %}
+      <tr>
+        <td align="center">{{ koin.ekdosi_gr }}</td>
+        {% if user.is_authenticated %}
+        <td align="center"><a href="{% url 'admin:koi_koinoxrista_change' koin.id %}">{{ koin.id }}</a></td>
+        {% else %}
+        <td align="center">{{ koin.id }}</td>
+        {% endif %}
+        <td align="center">{{ koin.diaxeiristis }}</td>
+        <td align="center">{{ koin.sxolia }}</td>
+        <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
+        <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
+        {% if user.is_authenticated %}
+        <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
+        {% else %}
+        <td align="center"></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% else %}
 <p>Δεν υπάρχουν καταχωρημένες κοινόχρηστες δαπάνες</p>
-{% endif %}
+{% endif %} {% endblock content %}

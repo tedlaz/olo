@@ -1,50 +1,35 @@
+{% extends "koi/base.html" %}
 {% load static %}
-
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbllandscape.css' %}">
-  </head>
-
-  <body>
-    <h1 align="center"><span style="font-size:18pt; text-decoration:underline;"><b>Χιλιοστά κοινοχρήστων</b></span></h1>
-    <table width="100%" border="1" cellpadding="1" cellspacing="0">
-      <tbody>
-        <tr>
-          <th align="center">Ένοικος</th>
-          {% for cat in categories %}
-          <th align="center">{{ cat.category }}</th>
-          {% endfor %}
-        </tr>
-        {% for xiliosto in xiliosta.values %}
-        <tr>
-          {% for cname, col in xiliosto.items %}
-          {% if cname == 'name' %}
-          <td>
-            {{ col }}
-          </td>
-          {% else %}
-          <td align="right">{{ col }}</td>
-          {% endif %}
-          {% endfor %}
-        </tr>
+{% block content %}
+  <h1 align="center">
+    <span style="font-size: 18pt; text-decoration: underline"><b>Χιλιοστά κοινοχρήστων</b></span>
+  </h1>
+  <table width="100%" border="1" cellpadding="1" cellspacing="0">
+    <tbody>
+      <tr>
+        <th align="center">Ένοικος</th>
+        {% for cat in categories %}
+        <th align="center">{{ cat.category }}</th>
         {% endfor %}
-        <tr>
-          {% for tname,tot in totals.items %}
-          {% if tname == 'name' %}
-          <td align="center"><b>{{ tot }}</b></td>
-          {% else %}
-          <td align="right"><b>{{ tot }}</b></td>
-          {% endif %}
-          {% endfor %}
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    <button onclick="javascript:window.print()" class="no-print">Εκτύπωση</button>
-    <br>
-    <a class="no-print" href=" {% url 'koi:index' %}">Επιστροφή</a>
-  </body>
-
+      </tr>
+      {% for xiliosto in xiliosta.values %}
+      <tr>
+        {% for cname, col in xiliosto.items %} {% if cname == 'name' %}
+        <td>{{ col }}</td>
+        {% else %}
+        <td align="right">{{ col }}</td>
+        {% endif %} {% endfor %}
+      </tr>
+      {% endfor %}
+      <tr>
+        {% for tname,tot in totals.items %} {% if tname == 'name' %}
+        <td align="center"><b>{{ tot }}</b></td>
+        {% else %}
+        <td align="right"><b>{{ tot }}</b></td>
+        {% endif %} {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  {% endblock content %}
 </html>

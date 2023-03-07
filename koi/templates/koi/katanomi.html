@@ -1,40 +1,25 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbllandscape.css' %}">
-  </head>
-
-  <body>
-    <h1 align="center"><b>{{ title }}</b> </h1>
-    <table cellspacing="0">
-      <tbody>
-        <tr>
-          {% for title in headers %}
-          <th align="center">{{ title }}</th>
-          {% endfor %}
-        </tr>
-        {% for line in lines %}
-        <tr>
-          {% for column in line %}
-          <td align="{{ column.lcr }}">{{ column.val }}</td>
-          {% endfor %}
-        </tr>
-        {% endfor %}
-        <tr>
-          {% for column in footer1 %}
-          <td colspan={{ column.span }} align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
-          {% endfor %}
-        </tr>
-      </tbody>
-    </table>
-    <!-- <div class="pagebreak"> Αν θέλεις αλλαγή σελίδας εδώ-->
-    <!-- </div> -->
-    <br>
-    <button onclick="javascript:window.print()" class="no-print">Εκτύπωση</button>
-    <br>
-    <a class="no-print" href=" {% url 'koi:index' %}">Επιστροφή</a>
-  </body>
-
-</html>
+{% extends "koi/base.html" %} {% load static %} {% block content %}
+<h2 align="center"><b>{{ title }}</b></h2>
+<table cellspacing="0">
+  <tbody>
+    <tr>
+      {% for title in headers %}
+      <th align="center">{{ title }}</th>
+      {% endfor %}
+    </tr>
+    {% for line in lines %}
+    <tr>
+      {% for column in line %}
+      <td align="{{ column.lcr }}">{{ column.val }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr>
+      {% for column in footer1 %}
+      <td colspan="{{ column.span }}" align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+<br />
+{% endblock content %}
