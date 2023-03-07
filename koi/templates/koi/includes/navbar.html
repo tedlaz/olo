@@ -23,8 +23,8 @@
       <!-- Navbar Right Side -->
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
-        {% if user.is_authenticated %} {% if user.is_superuser %}
         <a class="nav-item nav-link" href="{% url 'koi:xiliosta' %}">Χιλιοστά</a>
+        {% if user.is_authenticated %} {% if user.is_superuser %}
         <a class="nav-item nav-link" href="#">New Post</a>
         <a class="nav-item nav-link" href="#">New Dataset</a>
         <a class="nav-item nav-link" href="#">Datasets</a>
