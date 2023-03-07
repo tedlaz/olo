@@ -6,3 +6,5 @@ dist
 .vscode/
 *.log
 .coverage
+*.sqlite3
+.env
