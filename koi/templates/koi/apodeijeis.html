@@ -1,9 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-
   <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbl.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbl.css' %}" />
   </head>
 
   <body>
@@ -41,20 +40,19 @@
         {% endfor %}
         <tr>
           {% for column in diam.footer1 %}
-          <td colspan={{ column.span }} align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+          <td colspan="{{" column.span }} align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
           {% endfor %}
         </tr>
       </tbody>
     </table>
-    <br>
+    <br />
     {% if koinoxrista.diaxeiristis.sex == 1 %}
     <h3 align="center">Ο διαχειριστής ({{ koinoxrista.diaxeiristis }})</h3>
     {% else %}
     <h3 align="center">Η διαχειρίστρια ({{ koinoxrista.diaxeiristis }})</h3>
     {% endif %}
     <h4 align="center">(Υπογραφή)</h4>
-    <div class="pagebreak"> </div>
+    <div class="pagebreak"></div>
     {% endfor %}
   </body>
-
 </html>

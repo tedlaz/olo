@@ -1,10 +1,8 @@
-{% load static %}
-{% if koinoxrista_list %}
+{% load static %} {% if koinoxrista_list %}
 <!DOCTYPE html>
 <html>
-
   <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbllandscape.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'koi/tbllandscape.css' %}" />
   </head>
 
   <body>
@@ -33,11 +31,9 @@
           <td align="center">{{ koin.diaxeiristis }}</td>
           <td align="center">{{ koin.sxolia }}</td>
           <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
-          <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">Κατανομή της {{ koin.ekdosi_gr }}</a>
-          </td>
+          <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">Κατανομή της {{ koin.ekdosi_gr }}</a></td>
           {% if user.is_authenticated %}
-          <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">Αποδείξεις της
-              {{ koin.ekdosi_gr }}</a></td>
+          <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">Αποδείξεις της {{ koin.ekdosi_gr }}</a></td>
           {% else %}
           <td align="center"></td>
           {% endif %}
@@ -45,14 +41,10 @@
         {% endfor %}
       </tbody>
     </table>
-    <!-- <div class="pagebreak"> Αν θέλεις αλλαγή σελίδας εδώ-->
-    </div>
-    <br>
+    <br />
     <button onclick="javascript:window.print()" class="no-print">Print</button>
-    <br>
-
+    <br />
   </body>
-
 </html>
 {% else %}
 <p>Δεν υπάρχουν καταχωρημένες κοινόχρηστες δαπάνες</p>

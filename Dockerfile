@@ -1,14 +1,14 @@
 FROM python:alpine
 
-RUN pip install django && \
-    mkdir olo
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY . /olo
+WORKDIR /app
 
-RUN chmod +x /olo/start.sh
+COPY ./requirements.txt .
 
-WORKDIR /olo
 
-EXPOSE 8000
+RUN pip install -r requirements.txt
 
-CMD ["/olo/start.sh"]
+COPY . .
