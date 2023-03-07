@@ -77,7 +77,8 @@ class Koinoxrista(models.Model):
 
     @property
     def ekdosi_gr(self):
-        return f'{self.ekdosi.day}/{self.ekdosi.month}/{self.ekdosi.year}'
+        yyyy, mm, dd = self.ekdosi.isoformat().split('-')
+        return f'{dd}/{mm}/{yyyy}'
 
     def totals(self):
         tval = 0

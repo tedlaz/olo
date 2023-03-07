@@ -1,42 +1,40 @@
 {% extends "koi/base.html" %} {% load static %} {% block content %}{% if koinoxrista_list %}
 <!DOCTYPE html>
 <h2 align="center"><b>Κοινόχρηστα</b></h2>
-<div class="table-responsive">
+{% comment %} <div class="table-responsive"> {% endcomment %}
   <table class="table table-sm table-bordered">
     <thead>
       <tr>
-        <th class="text-center">Ημ/νία</th>
+        {% if user.is_authenticated %}
         <th class="text-center">Αριθμός</th>
-        <th class="text-center">διαχειριστής</th>
-        <th class="text-center">Σχόλια</th>
-        <th class="text-center">Δαπάνες</th>
+        <th class="text-center">Διαχειριστής</th>
+        {% endif %}
         <th class="text-center">Κατανομή</th>
+        <th class="text-center">Δαπάνες</th>
+        <th class="text-center">Σχόλια</th>
+        {% if user.is_authenticated %}
         <th class="text-center">Αποδείξεις</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
       {% for koin in koinoxrista_list %}
       <tr>
-        <td align="center">{{ koin.ekdosi_gr }}</td>
         {% if user.is_authenticated %}
         <td align="center"><a href="{% url 'admin:koi_koinoxrista_change' koin.id %}">{{ koin.id }}</a></td>
-        {% else %}
-        <td align="center">{{ koin.id }}</td>
-        {% endif %}
         <td align="center">{{ koin.diaxeiristis }}</td>
+        {% endif %}
+        <td align="center"><a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'koi:katanomi' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
+        <td align="right"><a class="btn btn-warning btn-sm mt-1 mb-1" href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
         <td align="center">{{ koin.sxolia }}</td>
-        <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
-        <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
         {% if user.is_authenticated %}
-        <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
-        {% else %}
-        <td align="center"></td>
+        <td align="center"><a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'koi:apodeijeis' koin.id %}">view</a></td>
         {% endif %}
       </tr>
       {% endfor %}
     </tbody>
   </table>
-</div>
+{% comment %} </div> {% endcomment %}
 {% else %}
 <p>Δεν υπάρχουν καταχωρημένες κοινόχρηστες δαπάνες</p>
 {% endif %} {% endblock content %}
