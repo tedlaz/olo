@@ -1,0 +1,56 @@
+{% load static %}
+<footer class="footer-color text-center footer-text">
+  <div class="container p-4">
+    {% if not user.is_authenticated %}
+    <section class="">
+      <form action="{% url 'subscribe' %}" method="post">
+        <div class="row d-flex justify-content-center">
+          {% csrf_token %}
+
+          <div class="col-auto">
+            <p class="pt-2">Subscribe for our newsletter</p>
+          </div>
+
+          <div class="col-auto">
+            <input id="name" name="name" class="form-control" placeholder="Your Name" />
+          </div>
+
+          <div class="col-auto">
+            <input id="email" name="email" type="email" class="form-control" placeholder="Email address" />
+          </div>
+
+          <div class="col-auto">
+            <button type="submit" class="btn btncolor">
+              <i class="fa fa-arrow-circle-right fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+    {% endif %} {% comment %}
+    <div class="row mobiledevice">
+      <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+        <a href="/">
+          <h4>Disclaimer</h4>
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+        <h4>Information</h4>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+        <a href="/">
+          <h4>About</h4>
+        </a>
+      </div>
+    </div>
+    {% endcomment %}
+  </div>
+  <div class="text-center p-3" style="height: 60px; background-color: rgb(250, 250, 250)">
+    <p style="color: black">
+      © {% now "Y" %}
+      <a href="https://bihelab.di.ionio.gr/"
+        ><img src="{% static 'images/bihelab.png' %}" alt="bihelab" width="90" height="50"
+      /></a>
+    </p>
+  </div>
+</footer>
