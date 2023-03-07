@@ -40,7 +40,7 @@
         {% endfor %}
         <tr>
           {% for column in diam.footer1 %}
-          <td colspan="{{" column.span }} align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+          <td colspan="{{ column.span }}" align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
           {% endfor %}
         </tr>
       </tbody>
