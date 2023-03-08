@@ -4,6 +4,7 @@ from collections import namedtuple
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
+
 from utils.distribute import distr
 from utils.greek_utils import grdate, grnum
 
@@ -94,7 +95,7 @@ def distribution(request, koin_id):
     for el in xiliosta:
         fdi[(el.category.id, el.diamerisma.id)] = el.xiliosta
     rlines, total_categories, gtotal = distr(fposa, fdi)
-    title = f'Κατανομή κοινοχρήστων δαπανών της {grdate(koin.ekdosi)}'
+    title = f'Κατανομή κοινοχρήστων δαπανών {koin.id}-{grdate(koin.ekdosi)}'
     hcat = [i.category for i in mdl.Category.objects.all().order_by('id')]
     ddiam = {i.id: i.guest for i in mdl.Diamerisma.objects.all().order_by('id')}
     headers = ['Διαμερίσματα'] + hcat + ['Σύνολο']
@@ -109,27 +110,7 @@ def distribution(request, koin_id):
         footer1.append({'span': 1, 'lcr': 'right',
                         'val': grnum(total_categories[col])})
     footer1.append({'span': 1, 'lcr': 'right', 'val': grnum(gtotal)})
-    # lines = [
-    #     [
-    #         {'lcr': 'left', 'val': 'Διαμ1'},
-    #         {'lcr': 'right', 'val': '100,26'},
-    #         {'lcr': 'right', 'val': '34,56'}
-    #     ],
-    #     [
-    #         {'lcr': 'left', 'val': 'Διαμ2'},
-    #         {'lcr': 'right', 'val': '200,00'},
-    #         {'lcr': 'right', 'val': '65,44'}
-    #     ]
-    # ]
-    # footer1 = [
-    #     {'span': 1, 'lcr': 'center', 'val': 'Σύνολα'},
-    #     {'span': 1, 'lcr': 'right', 'val': '442,56'},
-    #     {'span': 1, 'lcr': 'right', 'val': '788,89'},
-    # ]
-    # footer2 = [
-    #     {'span': 1, 'lcr': 'center', 'val': 'Γενικό σύνολο'},
-    #     {'span': 2, 'lcr': 'center', 'val': '1256,68'},
-    # ]
+
     return render(
         request,
         'koi/katanomi.html',

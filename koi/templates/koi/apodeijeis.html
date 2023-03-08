@@ -1,11 +1,11 @@
 {% extends "koi/base.html" %} {% load static %} {% block content %} {% for diam in lines %}
 <h3 align="center">{{ ptitle }}</h3>
+<br>
+<p>Ημερομηνία : {{ koinoxrista.ekdosi }} (No: {{ koinoxrista.id }})</p>
+<p>Ένοικος : <b>{{ diam.diamerisma.guest }}</b></p>
+<p>Ιδιοκτήτης : {{diam.diamerisma.owner }}</p>
+<p>Όροφος : {{ diam.diamerisma.orofos }}</p>
 
-<p>Ημερομηνία έκδοσης : {{ koinoxrista.ekdosi }} (No: {{ koinoxrista.id }})</p>
-<p>
-  Διαμέρισμα : <b>{{ diam.diamerisma.guest }}</b> (Όροφος {{ diam.diamerisma.orofos }} - ιδιοκτήτης
-  {{diam.diamerisma.owner }})
-</p>
 {% comment %}
 <p>Όροφος : {{ diam.diamerisma.orofos }}</p>
 {% endcomment %}
@@ -15,7 +15,7 @@
   <tbody>
     <tr>
       {% for title in headers %}
-      <th align="center">{{ title }}</th>
+      <th class="text-center">{{ title }}</th>
       {% endfor %}
     </tr>
     {% for line in diam.lines %}

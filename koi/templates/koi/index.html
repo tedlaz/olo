@@ -24,11 +24,11 @@
         <td align="center"><a href="{% url 'admin:koi_koinoxrista_change' koin.id %}">{{ koin.id }}</a></td>
         <td align="center">{{ koin.diaxeiristis }}</td>
         {% endif %}
-        <td align="center"><a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'koi:katanomi' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
-        <td align="right"><a class="btn btn-warning btn-sm mt-1 mb-1" href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
+        <td align="center"><a href="{% url 'koi:katanomi' koin.id %}">{{ koin.ekdosi_gr }}</a></td>
+        <td align="right"><a href="{% url 'koi:dapanes' koin.id %}">{{ koin.totals }}</a></td>
         <td align="center">{{ koin.sxolia }}</td>
         {% if user.is_authenticated %}
-        <td align="center"><a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'koi:apodeijeis' koin.id %}">view</a></td>
+        <td align="center"><a href="{% url 'koi:apodeijeis' koin.id %}">view</a></td>
         {% endif %}
       </tr>
       {% endfor %}

@@ -3,20 +3,22 @@
 <h2 align="center">
   <span
     ><b
-      >ΚΟΙΝΟΧΡΗΣΤΕΣ ΔΑΠΑΝΕΣ ΤΗΣ {{ koin.ekdosi_gr }} {% if koin.url != '#' %}<a class="no-print" href="{{ koin.url }}"
+      >ΚΟΙΝΟΧΡΗΣΤΕΣ ΔΑΠΑΝΕΣ {{ koin.id }}-{{ koin.ekdosi_gr }} {% if koin.url != '#' %}<a class="no-print" href="{{ koin.url }}"
         >(Αρχεία)</a
       >{% endif %}</b
     ></span
   >
 </h2>
+<p align="center">({{ koin.sxolia }})</p>
+<br>
 <table cellspacing="0">
   <tbody>
     <tr>
-      <th align="center">Ημερομηνία</th>
-      <th align="center">Παραστατικό</th>
-      <th align="center">Περιγραφή</th>
+      <th class="text-center">Ημερομηνία</th>
+      <th class="text-center">Παραστατικό</th>
+      <th class="text-center">Περιγραφή</th>
       {% for cat in cats %}
-      <th align="center">{{ cat.category }}</th>
+      <th class="text-center">{{ cat.category }}</th>
       {% endfor %}
     </tr>
     {% for dapani in dapanes %}
