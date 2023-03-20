@@ -5,8 +5,8 @@ from django.db.models import Sum
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 
-from utils.distribute import distr, distribute_view
-from utils.greek_utils import grdate, grnum
+from utils.distribute import distribute_view
+from utils.greek_utils import gr2float, grdate, grnum
 
 from . import models as mdl
 
@@ -84,7 +84,7 @@ def xiliosta_view(request):
     )
 
 
-def distribution(request, koin_id):
+def calc_distribution(koin_id):
     diamer = {i.id: i.guest for i in mdl.Diamerisma.objects.all().order_by("id")}
     categ = {i.id: i.category for i in mdl.Category.objects.all().order_by("id")}
     xiliosta = mdl.Xiliosta.objects.all()
@@ -95,6 +95,11 @@ def distribution(request, koin_id):
         .annotate(tvalue=Sum("value"))
     )
     header, data, footer = distribute_view(dap_per_cat, xiliosta, diamer, categ)
+    return header, data, footer, koin
+
+
+def distribution(request, koin_id):
+    header, data, footer, koin = calc_distribution(koin_id)
     title = f"Κατανομή κοινοχρήστων δαπανών {koin.id}-{grdate(koin.ekdosi)}"
 
     return render(
@@ -131,13 +136,15 @@ def apodeijeis(request, apod_id):
     adi["koinoxrista"] = koin
     adi["ptitle"] = "Απόδειξη εξώφλησης κοινοχρήστων"
     adi["lines"] = []
-    for diamerisma in diamerismata:
+    _, data, _, _ = calc_distribution(apod_id)
+    totals1 = [i[-1] for i in data]
+    for i, diamerisma in enumerate(diamerismata):
         dline = {"diamerisma": diamerisma, "lines": [], "footer": []}
         total = 0
         for dapani in dap:
             xiliosta = fdi[(dapani["category_id"], diamerisma.id)]
-            anal = xiliosta / 1000 * float(dapani["value"])
-            total += anal
+            anal = round(xiliosta / 1000 * float(dapani["value"]), 2)
+            total = round(total + anal, 2)
             line = [
                 {"lcr": "center", "val": dapani["par_date"]},
                 {"lcr": "center", "val": dapani["par_num"]},
@@ -150,9 +157,11 @@ def apodeijeis(request, apod_id):
 
         dline["footer1"] = [
             {"span": 5, "lcr": "center", "val": "Πληρωτέο ποσό"},
-            {"span": 1, "lcr": "right", "val": grnum(total)},
+            {"span": 1, "lcr": "right", "val": totals1[i]},
         ]
         if total != 0:
+            if abs(total - gr2float(totals1[i])) > 0.05:
+                raise ValueError
             adi["lines"].append(dline)
 
     return render(request, "koi/apodeijeis.html", adi)
