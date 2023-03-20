@@ -10,17 +10,18 @@
   >
 </h2>
 <p align="center">({{ koin.sxolia }})</p>
-<br>
-<table cellspacing="0">
-  <tbody>
+<table class="table table-sm table-striped table-bordered">
+  <thead class="text-center">
     <tr>
-      <th class="text-center">Ημερομηνία</th>
-      <th class="text-center">Παραστατικό</th>
-      <th class="text-center">Περιγραφή</th>
+      <th>Ημ/νία</th>
+      <th>Παρ/κό</th>
+      <th>Περιγραφή</th>
       {% for cat in cats %}
-      <th class="text-center">{{ cat.category }}</th>
+      <th>{{ cat.category }}</th>
       {% endfor %}
     </tr>
+  </thead>
+  <tbody>
     {% for dapani in dapanes %}
     <tr>
       {% for key, val in dapani.items %}

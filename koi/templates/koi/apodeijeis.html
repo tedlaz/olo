@@ -1,4 +1,7 @@
-{% extends "koi/base.html" %} {% load static %} {% block content %} {% for diam in lines %}
+{% extends "koi/base.html" %}
+{% load static %}
+{% block content %}
+{% for diam in lines %}
 <h3 align="center">{{ ptitle }}</h3>
 <br>
 <p>Ημερομηνία : {{ koinoxrista.ekdosi }} (No: {{ koinoxrista.id }})</p>
@@ -6,18 +9,16 @@
 <p>Ιδιοκτήτης : {{diam.diamerisma.owner }}</p>
 <p>Όροφος : {{ diam.diamerisma.orofos }}</p>
 
-{% comment %}
-<p>Όροφος : {{ diam.diamerisma.orofos }}</p>
-{% endcomment %}
-
 <h6 align="center">Δαπάνες και αναλογία διαμερίσματος</h6>
-<table border="1" cellpadding="1" cellspacing="0">
-  <tbody>
+<table class="table table-sm table-striped table-bordered">
+  <thead class="text-center">
     <tr>
       {% for title in headers %}
-      <th class="text-center">{{ title }}</th>
+      <th >{{ title }}</th>
       {% endfor %}
     </tr>
+  </thead>
+  <tbody>
     {% for line in diam.lines %}
     <tr>
       {% for column in line %}

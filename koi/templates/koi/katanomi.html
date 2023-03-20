@@ -1,23 +1,33 @@
 {% extends "koi/base.html" %} {% load static %} {% block content %}
 <h2 align="center"><b>{{ title }}</b></h2>
 <br>
-<table cellspacing="0">
-  <tbody>
+<table class="table table-sm table-striped table-bordered">
+  <thead class="text-center">
     <tr>
       {% for title in headers %}
-      <th align="center">{{ title }}</th>
+      <th>{{ title }}</th>
       {% endfor %}
     </tr>
+  </thead>
+  <tbody>
     {% for line in lines %}
     <tr>
       {% for column in line %}
-      <td align="{{ column.lcr }}">{{ column.val }}</td>
+      {% if forloop.first %}
+      <td align="left">{{ column }}</td>
+      {% else %}
+      <td align="right">{{ column }}</td>
+      {% endif %}
       {% endfor %}
     </tr>
     {% endfor %}
     <tr>
       {% for column in footer1 %}
-      <td colspan="{{ column.span }}" align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+      {% if forloop.first %}
+      <td align="center"><b>{{ column }}</b></td>
+      {% else %}
+      <td align="right"><b>{{ column }}</b></td>
+      {% endif %}
       {% endfor %}
     </tr>
   </tbody>

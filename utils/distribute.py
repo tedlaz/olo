@@ -1,3 +1,6 @@
+from .greek_utils import grnum
+
+
 def distribute(val: float, dist_array: list[int]):
     """
     input parameters:
@@ -27,6 +30,53 @@ def distribute_many(data: list[dict]):
     for line in data:
         res[line["cat"]] = distribute(line["val"], line["dist_array"])
     return res
+
+
+def get_list_of_dist(xiliosta: dict, category_id, diamerismata_ids):
+    xiliosta_cat = []
+    # diamerismata_cat = []
+    for diam_id in diamerismata_ids:
+        value = 0
+        for xil in xiliosta:
+            if category_id == xil.category.id and diam_id == xil.diamerisma.id:
+                value = xil.xiliosta
+        # diamerismata_cat.append(diam_id)
+        xiliosta_cat.append(value)
+    return xiliosta_cat
+
+
+def create_matrix(diamerismata_ids, categories_ids, distr_per_cat):
+    header = ["Διαμέρισμα"] + list(categories_ids.values()) + ["Σύνολο"]
+    matrix = []
+    footer = ["Σύνολα"] + [0 for _ in categories_ids.keys()]
+    for i, diamerisma_id in enumerate(diamerismata_ids.keys()):
+        line = [diamerismata_ids[diamerisma_id]]
+        for j, cat_id in enumerate(categories_ids.keys()):
+            if cat_id in distr_per_cat.keys():
+                line.append(distr_per_cat[cat_id][i])
+                footer[j + 1] = round(footer[j + 1] + distr_per_cat[cat_id][i], 2)
+            else:
+                line.append(0)
+        line.append(round(sum(line[1:]), 2))
+        matrix.append(line)
+    footer.append(round(sum(footer[1:]), 2))
+    fmatrix = [format2gr(i, 1) for i in matrix]
+    ffooter = format2gr(footer, 1)
+    return header, fmatrix, ffooter
+
+
+def format2gr(arr: list, from_index: int):
+    return arr[:from_index] + [grnum(i) for i in arr[from_index:]]
+
+
+def distribute_view(dapanes_ana_katigoria, xiliosta, diamerismata_ids, categories_ids):
+    distr_per_cat = {}
+    for line in dapanes_ana_katigoria:
+        category_id = line["category"]
+        value = float(line["tvalue"])
+        xiliosta_kat = get_list_of_dist(xiliosta, category_id, diamerismata_ids.keys())
+        distr_per_cat[category_id] = distribute(value, xiliosta_kat)
+    return create_matrix(diamerismata_ids, categories_ids, distr_per_cat)
 
 
 def distr(values: dict, xiliosta: dict):

@@ -1,0 +1,20 @@
+@media print {
+
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+
+    .pagebreak {
+        clear: both;
+        page-break-after: always;
+    }
+
+    @page {
+        size: landscape
+    }
+}
+
+@page {
+    size: auto;
+}

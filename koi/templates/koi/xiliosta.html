@@ -1,17 +1,18 @@
 {% extends "koi/base.html" %}
 {% load static %}
 {% block content %}
-  <h1 align="center">
-    <span style="font-size: 18pt; text-decoration: underline"><b>Χιλιοστά κοινοχρήστων</b></span>
-  </h1>
-  <table width="100%" border="1" cellpadding="1" cellspacing="0">
-    <tbody>
+  <h1 align="center"><b>Χιλιοστά κοινοχρήστων</b></h1>
+  <br>
+  <table class="table table-sm table-striped table-bordered">
+    <thead class="text-center">
       <tr>
-        <th align="center">Ένοικος</th>
+        <th>Ένοικος</th>
         {% for cat in categories %}
-        <th align="center">{{ cat.category }}</th>
+        <th>{{ cat.category }}</th>
         {% endfor %}
       </tr>
+    </thead>
+    <tbody>
       {% for xiliosto in xiliosta.values %}
       <tr>
         {% for cname, col in xiliosto.items %} {% if cname == 'name' %}
