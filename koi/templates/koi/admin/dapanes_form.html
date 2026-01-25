@@ -1,0 +1,73 @@
+{% extends 'koi/admin/base_admin.html' %}
+
+{% block title %}{{ title }} - Διαχείριση Κοινοχρήστων{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+  <nav class="flex" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center">
+        <a href="{% url 'koi:admin_dapanes_list' %}"
+          class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+          Δαπάνες
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="w-3 h-3 mx-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          <span class="ml-1 text-sm font-medium text-gray-500 dark:text-gray-400">{{ title }}</span>
+        </div>
+      </li>
+    </ol>
+  </nav>
+  <h1 class="mt-4 text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+</div>
+
+<div class="bg-white dark:bg-gray-800 shadow-sm rounded-xl border border-gray-200 dark:border-gray-700 p-6 max-w-3xl">
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {% for field in form %}
+      {% if field.name == 'par_per' %}
+      <div class="md:col-span-2">
+        {% else %}
+        <div>
+          {% endif %}
+          <label for="{{ field.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            {{ field.label }}
+            {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+          </label>
+          {{ field }}
+          {% if field.help_text %}
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ field.help_text }}</p>
+          {% endif %}
+          {% if field.errors %}
+          <div class="mt-1">
+            {% for error in field.errors %}
+            <p class="text-sm text-red-600 dark:text-red-400">{{ error }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <a href="{% url 'koi:admin_dapanes_list' %}"
+          class="inline-flex items-center rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500 transition-colors">
+          Ακύρωση
+        </a>
+        <button type="submit"
+          class="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          {{ action }}
+        </button>
+      </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="el" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Διαχείριση Κοινοχρήστων{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-gray-50 dark:bg-gray-900">
+  <div class="min-h-full">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 justify-between">
+          <div class="flex">
+            <div class="flex flex-shrink-0 items-center">
+              <a href="{% url 'koi:admin_dashboard' %}"
+                class="text-xl font-bold text-primary-600 dark:text-primary-400">
+                🏢 Κοινόχρηστα
+              </a>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
+              <a href="{% url 'koi:admin_dashboard' %}"
+                class="{% if request.resolver_match.url_name == 'admin_dashboard' %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Αρχική
+              </a>
+              <a href="{% url 'koi:admin_koinoxrista_list' %}"
+                class="{% if 'koinoxrista' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Κοινόχρηστα
+              </a>
+              <a href="{% url 'koi:admin_dapanes_list' %}"
+                class="{% if 'dapanes' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Δαπάνες
+              </a>
+              <a href="{% url 'koi:admin_diamerisma_list' %}"
+                class="{% if 'diamerisma' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Διαμερίσματα
+              </a>
+              <a href="{% url 'koi:admin_category_list' %}"
+                class="{% if 'category' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Κατηγορίες
+              </a>
+              <a href="{% url 'koi:admin_xiliosta_list' %}"
+                class="{% if 'xiliosta' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Χιλιοστά
+              </a>
+              <a href="{% url 'koi:admin_diaxeiristis_list' %}"
+                class="{% if 'diaxeiristis' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+                Διαχειριστές
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="{% url 'koi:index' %}"
+              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </a>
+            <span class="text-sm text-gray-600 dark:text-gray-400">{{ user.username }}</span>
+            <form method="post" action="{% url 'logout' %}" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="text-sm text-red-600 hover:text-red-800 dark:text-red-400">Έξοδος</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="sm:hidden border-t border-gray-200 dark:border-gray-700">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+          <a href="{% url 'koi:admin_dashboard' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Αρχική</a>
+          <a href="{% url 'koi:admin_koinoxrista_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Κοινόχρηστα</a>
+          <a href="{% url 'koi:admin_dapanes_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Δαπάνες</a>
+          <a href="{% url 'koi:admin_diamerisma_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Διαμερίσματα</a>
+          <a href="{% url 'koi:admin_category_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Κατηγορίες</a>
+          <a href="{% url 'koi:admin_xiliosta_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Χιλιοστά</a>
+          <a href="{% url 'koi:admin_diaxeiristis_list' %}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Διαχειριστές</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4">
+      {% for message in messages %}
+      <div
+        class="rounded-lg p-4 mb-2 {% if message.tags == 'success' %}bg-green-50 text-green-800 dark:bg-green-900 dark:text-green-200{% elif message.tags == 'error' %}bg-red-50 text-red-800 dark:bg-red-900 dark:text-red-200{% elif message.tags == 'warning' %}bg-yellow-50 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200{% else %}bg-blue-50 text-blue-800 dark:bg-blue-900 dark:text-blue-200{% endif %}">
+        <div class="flex items-center">
+          {% if message.tags == 'success' %}
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd" />
+          </svg>
+          {% endif %}
+          {{ message }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main content -->
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+          © 2024 Διαχείριση Κοινοχρήστων. Όλα τα δικαιώματα διατηρούνται.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>
