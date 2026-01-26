@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -20,6 +22,23 @@ from .models import Category, Dapanes, Diamerisma, Diaxeiristis, Koinoxrista, Xi
 @login_required
 def admin_dashboard(request):
     """Main admin dashboard with statistics"""
+    current_year = date.today().year
+    last_year = current_year - 1
+
+    current_year_expenses = (
+        Dapanes.objects.filter(par_date__year=current_year).aggregate(
+            total=Sum("value")
+        )["total"]
+        or 0
+    )
+
+    last_year_expenses = (
+        Dapanes.objects.filter(par_date__year=last_year).aggregate(total=Sum("value"))[
+            "total"
+        ]
+        or 0
+    )
+
     context = {
         "total_diamerismata": Diamerisma.objects.count(),
         "total_categories": Category.objects.count(),
@@ -29,7 +48,10 @@ def admin_dashboard(request):
         "total_xiliosta": Xiliosta.objects.count(),
         "recent_koinoxrista": Koinoxrista.objects.order_by("-ekdosi")[:5],
         "recent_dapanes": Dapanes.objects.order_by("-par_date")[:5],
-        "dapanes_sum": Dapanes.objects.aggregate(total=Sum("value"))["total"] or 0,
+        "current_year": current_year,
+        "last_year": last_year,
+        "current_year_expenses": current_year_expenses,
+        "last_year_expenses": last_year_expenses,
     }
     return render(request, "koi/admin/dashboard.html", context)
 
