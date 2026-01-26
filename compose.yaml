@@ -1,5 +1,7 @@
 services:
-  web:
+  olo:
+    container_name: olo
+    restart: unless-stopped
     build: .
     ports:
     - "8073:8000"
