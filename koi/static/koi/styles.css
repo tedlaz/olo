@@ -1,20 +1,131 @@
+/* ========================================
+   RESPONSIVE STYLES FOR MOBILE DEVICES
+   ======================================== */
+
+/* Make tables responsive on mobile */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-friendly table styles */
+@media screen and (max-width: 768px) {
+  /* General body adjustments */
+  body {
+    font-size: 14px;
+  }
+
+  /* Container adjustments */
+  .container-xl,
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Make all tables scrollable horizontally */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce table cell padding on mobile */
+  .table td,
+  .table th {
+    padding: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  /* Headings smaller on mobile */
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Navbar adjustments */
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem;
+  }
+
+  /* Button adjustments */
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media screen and (max-width: 576px) {
+  body {
+    font-size: 13px;
+  }
+
+  .container-xl,
+  .container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  /* Even smaller table text for very small screens */
+  .table td,
+  .table th {
+    padding: 0.3rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  /* Stack form elements vertically */
+  .form-inline .form-control {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
 @media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
 
-    .no-print,
-    .no-print * {
-        display: none !important;
-    }
+  .pagebreak {
+    clear: both;
+    page-break-after: always;
+  }
 
-    .pagebreak {
-        clear: both;
-        page-break-after: always;
-    }
-
-    @page {
-        size: landscape
-    }
+  @page {
+    size: landscape;
+  }
 }
 
 @page {
-    size: auto;
+  size: auto;
 }

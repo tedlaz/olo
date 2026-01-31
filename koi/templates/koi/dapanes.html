@@ -1,45 +1,42 @@
 {% extends "koi/base.html" %} {% load static %} {% block content %}
 
-<h2 align="center">
-  <span
-    ><b
-      >ΚΟΙΝΟΧΡΗΣΤΕΣ ΔΑΠΑΝΕΣ {{ koin.id }}-{{ koin.ekdosi_gr }} {% if koin.url != '#' %}<a class="no-print" href="{{ koin.url }}"
-        >(Αρχεία)</a
-      >{% endif %}</b
-    ></span
-  >
+<h2 class="text-center">
+  <span><b>ΚΟΙΝΟΧΡΗΣΤΕΣ ΔΑΠΑΝΕΣ {{ koin.id }}-{{ koin.ekdosi_gr }} {% if koin.url != '#' %}<a class="no-print"
+        href="{{ koin.url }}">(Αρχεία)</a>{% endif %}</b></span>
 </h2>
-<p align="center">({{ koin.sxolia }})</p>
-<table class="table table-sm table-striped table-bordered">
-  <thead class="text-center">
-    <tr>
-      <th>Ημ/νία</th>
-      <th>Παρ/κό</th>
-      <th>Περιγραφή</th>
-      {% for cat in cats %}
-      <th>{{ cat.category }}</th>
+<p class="text-center">({{ koin.sxolia }})</p>
+<div class="table-responsive">
+  <table class="table table-sm table-striped table-bordered">
+    <thead class="text-center">
+      <tr>
+        <th>Ημ/νία</th>
+        <th>Παρ/κό</th>
+        <th>Περιγραφή</th>
+        {% for cat in cats %}
+        <th>{{ cat.category }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for dapani in dapanes %}
+      <tr>
+        {% for key, val in dapani.items %}
+        <td align="{{ val.align }}">{{ val.value }}</td>
+        {% endfor %}
+      </tr>
       {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-    {% for dapani in dapanes %}
-    <tr>
-      {% for key, val in dapani.items %}
-      <td align="{{ val.align }}">{{ val.value }}</td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
-    <tr>
-      <td colspan="3" align="center"><b>Σύνολα</b></td>
-      {% for tot in total.values %}
-      <td align="right"><b>{{ tot }}</b></td>
-      {% endfor %}
-    </tr>
-    <tr>
-      <td class="gtotal" colspan="3" align="center"><b>Γενικό Σύνολο</b></td>
-      <td class="gtotal" colspan="{{ clen }}" align="center"><b>{{ gtotal }}</b></td>
-    </tr>
-  </tbody>
-</table>
+      <tr>
+        <td colspan="3" align="center"><b>Σύνολα</b></td>
+        {% for tot in total.values %}
+        <td align="right"><b>{{ tot }}</b></td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <td class="gtotal" colspan="3" align="center"><b>Γενικό Σύνολο</b></td>
+        <td class="gtotal" colspan="{{ clen }}" align="center"><b>{{ gtotal }}</b></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <br />
 {% endblock content %}

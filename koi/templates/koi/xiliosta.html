@@ -1,8 +1,9 @@
 {% extends "koi/base.html" %}
 {% load static %}
 {% block content %}
-  <h1 align="center"><b>Χιλιοστά κοινοχρήστων</b></h1>
-  <br>
+<h1 class="text-center"><b>Χιλιοστά κοινοχρήστων</b></h1>
+<br>
+<div class="table-responsive">
   <table class="table table-sm table-striped table-bordered">
     <thead class="text-center">
       <tr>
@@ -31,6 +32,6 @@
       </tr>
     </tbody>
   </table>
-  <br>
-  {% endblock content %}
-</html>
+</div>
+<br>
+{% endblock content %}

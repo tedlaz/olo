@@ -2,37 +2,39 @@
 {% load static %}
 {% block content %}
 {% for diam in lines %}
-<h3 align="center">{{ ptitle }}</h3>
+<h3 class="text-center">{{ ptitle }}</h3>
 <br>
 <p>Ημερομηνία : {{ koinoxrista.ekdosi }} (No: {{ koinoxrista.id }})</p>
 <p>Ένοικος : <b>{{ diam.diamerisma.guest }}</b></p>
 <p>Ιδιοκτήτης : {{diam.diamerisma.owner }}</p>
 <p>Όροφος : {{ diam.diamerisma.orofos }}</p>
 
-<h6 align="center">Δαπάνες και αναλογία διαμερίσματος</h6>
-<table class="table table-sm table-striped table-bordered">
-  <thead class="text-center">
-    <tr>
-      {% for title in headers %}
-      <th >{{ title }}</th>
+<h6 class="text-center">Δαπάνες και αναλογία διαμερίσματος</h6>
+<div class="table-responsive">
+  <table class="table table-sm table-striped table-bordered">
+    <thead class="text-center">
+      <tr>
+        {% for title in headers %}
+        <th>{{ title }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for line in diam.lines %}
+      <tr>
+        {% for column in line %}
+        <td align="{{ column.lcr }}">{{ column.val }}</td>
+        {% endfor %}
+      </tr>
       {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-    {% for line in diam.lines %}
-    <tr>
-      {% for column in line %}
-      <td align="{{ column.lcr }}">{{ column.val }}</td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
-    <tr>
-      {% for column in diam.footer1 %}
-      <td colspan="{{ column.span }}" align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
-      {% endfor %}
-    </tr>
-  </tbody>
-</table>
+      <tr>
+        {% for column in diam.footer1 %}
+        <td colspan="{{ column.span }}" align="{{ column.lcr }}"><b>{{ column.val }}</b></td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
 <br />
 {% if koinoxrista.diaxeiristis.sex == 1 %}
 <p align="center">Ο διαχειριστής ({{ koinoxrista.diaxeiristis }})</p>

@@ -1,7 +1,6 @@
 {% extends "koi/base.html" %} {% load static %} {% block content %}{% if koinoxrista_list %}
-<!DOCTYPE html>
-<h2 align="center"><b>Κοινόχρηστα</b></h2>
-{% comment %} <div class="table-responsive"> {% endcomment %}
+<h2 class="text-center"><b>Κοινόχρηστα</b></h2>
+<div class="table-responsive">
   <table class="table table-sm table-bordered">
     <thead>
       <tr>
@@ -34,7 +33,7 @@
       {% endfor %}
     </tbody>
   </table>
-{% comment %} </div> {% endcomment %}
+</div>
 {% else %}
 <p>Δεν υπάρχουν καταχωρημένες κοινόχρηστες δαπάνες</p>
 {% endif %} {% endblock content %}

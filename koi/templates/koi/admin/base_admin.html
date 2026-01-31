@@ -45,46 +45,48 @@
     <!-- Navigation -->
     <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="flex h-16 justify-between">
-          <div class="flex">
-            <div class="flex flex-shrink-0 items-center">
-              <a href="{% url 'koi:admin_dashboard' %}"
-                class="text-xl font-bold text-primary-600 dark:text-primary-400">
-                🏢 Κοινόχρηστα
-              </a>
-            </div>
-            <div class="hidden sm:ml-6 sm:flex sm:space-x-4">
-              <a href="{% url 'koi:admin_dashboard' %}"
-                class="{% if request.resolver_match.url_name == 'admin_dashboard' %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Αρχική
-              </a>
-              <a href="{% url 'koi:admin_koinoxrista_list' %}"
-                class="{% if 'koinoxrista' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Κοινόχρηστα
-              </a>
-              <a href="{% url 'koi:admin_dapanes_list' %}"
-                class="{% if 'dapanes' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Δαπάνες
-              </a>
-              <a href="{% url 'koi:admin_diamerisma_list' %}"
-                class="{% if 'diamerisma' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Διαμερίσματα
-              </a>
-              <a href="{% url 'koi:admin_category_list' %}"
-                class="{% if 'category' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Κατηγορίες
-              </a>
-              <a href="{% url 'koi:admin_xiliosta_list' %}"
-                class="{% if 'xiliosta' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Χιλιοστά
-              </a>
-              <a href="{% url 'koi:admin_diaxeiristis_list' %}"
-                class="{% if 'diaxeiristis' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
-                Διαχειριστές
-              </a>
-            </div>
+        <div class="flex h-16 justify-between items-center">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="{% url 'koi:admin_dashboard' %}" class="text-xl font-bold text-primary-600 dark:text-primary-400">
+              🏢 Κοινόχρηστα
+            </a>
           </div>
-          <div class="flex items-center space-x-4">
+
+          <!-- Desktop menu -->
+          <div class="hidden lg:flex lg:items-center lg:space-x-4">
+            <a href="{% url 'koi:admin_dashboard' %}"
+              class="{% if request.resolver_match.url_name == 'admin_dashboard' %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Αρχική
+            </a>
+            <a href="{% url 'koi:admin_koinoxrista_list' %}"
+              class="{% if 'koinoxrista' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Κοινόχρηστα
+            </a>
+            <a href="{% url 'koi:admin_dapanes_list' %}"
+              class="{% if 'dapanes' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Δαπάνες
+            </a>
+            <a href="{% url 'koi:admin_diamerisma_list' %}"
+              class="{% if 'diamerisma' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Διαμερίσματα
+            </a>
+            <a href="{% url 'koi:admin_category_list' %}"
+              class="{% if 'category' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Κατηγορίες
+            </a>
+            <a href="{% url 'koi:admin_xiliosta_list' %}"
+              class="{% if 'xiliosta' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Χιλιοστά
+            </a>
+            <a href="{% url 'koi:admin_diaxeiristis_list' %}"
+              class="{% if 'diaxeiristis' in request.resolver_match.url_name %}bg-primary-50 text-primary-700 dark:bg-primary-900 dark:text-primary-200{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700{% endif %} rounded-md px-3 py-2 text-sm font-medium">
+              Διαχειριστές
+            </a>
+          </div>
+
+          <!-- Desktop right side -->
+          <div class="hidden lg:flex lg:items-center lg:space-x-4">
             <a href="{% url 'koi:index' %}"
               class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,11 +100,23 @@
               <button type="submit" class="text-sm text-red-600 hover:text-red-800 dark:text-red-400">Έξοδος</button>
             </form>
           </div>
+
+          <!-- Mobile menu button -->
+          <div class="lg:hidden">
+            <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+              class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+              aria-controls="mobile-menu" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- Mobile menu -->
-      <div class="sm:hidden border-t border-gray-200 dark:border-gray-700">
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 dark:border-gray-700">
         <div class="space-y-1 px-2 pb-3 pt-2">
           <a href="{% url 'koi:admin_dashboard' %}"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Αρχική</a>
@@ -118,6 +132,24 @@
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Χιλιοστά</a>
           <a href="{% url 'koi:admin_diaxeiristis_list' %}"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300">Διαχειριστές</a>
+        </div>
+        <!-- Mobile user section -->
+        <div class="border-t border-gray-200 dark:border-gray-700 px-4 py-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600 dark:text-gray-400">{{ user.username }}</span>
+            <div class="flex items-center space-x-4">
+              <a href="{% url 'koi:index' %}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </a>
+              <form method="post" action="{% url 'logout' %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-sm text-red-600 hover:text-red-800 dark:text-red-400">Έξοδος</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
