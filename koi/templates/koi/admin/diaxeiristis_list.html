@@ -52,27 +52,27 @@
     <thead class="bg-gray-50 dark:bg-gray-700">
       <tr>
         <th scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID
+          class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID
         </th>
         <th scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+          class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
           Όνομα</th>
         <th scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+          class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
           Ημ/νία Ανάληψης</th>
         <th scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Φύλο
+          class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Φύλο
         </th>
         <th scope="col"
-          class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+          class="px-2 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
           Ενέργειες</th>
       </tr>
     </thead>
     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
       {% for diaxeiristis in diaxeiristes %}
       <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ diaxeiristis.id }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">
+        <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ diaxeiristis.id }}</td>
+        <td class="px-2 py-4 whitespace-nowrap">
           <div class="flex items-center">
             <div
               class="h-10 w-10 flex-shrink-0 rounded-full bg-pink-100 dark:bg-pink-900 flex items-center justify-center">
@@ -87,9 +87,9 @@
             </div>
           </div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+        <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
           {{ diaxeiristis.date_from|date:"d/m/Y" }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">
+        <td class="px-2 py-4 whitespace-nowrap">
           {% if diaxeiristis.sex == 1 %}
           <span
             class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
@@ -102,7 +102,7 @@
           </span>
           {% endif %}
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
           <div class="flex items-center justify-end space-x-2">
             <a href="{% url 'koi:admin_diaxeiristis_edit' diaxeiristis.pk %}"
               class="inline-flex items-center rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 transition-colors">
@@ -110,7 +110,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
-              Επεξεργασία
+
             </a>
             <a href="{% url 'koi:admin_diaxeiristis_delete' diaxeiristis.pk %}"
               class="inline-flex items-center rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800 transition-colors">
@@ -118,7 +118,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              Διαγραφή
+
             </a>
           </div>
         </td>

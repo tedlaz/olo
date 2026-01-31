@@ -53,57 +53,46 @@
       <thead class="bg-gray-50 dark:bg-gray-700">
         <tr>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Αρ.</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Διαμέρισμα</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Όροφος</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Τ.Μ.</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Ιδιοκτήτης</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Ένοικος</th>
           <th scope="col"
-            class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Ενέργειες</th>
         </tr>
       </thead>
       <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
         {% for diamerisma in diamerismata %}
         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ diamerisma.num }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <div class="flex items-center">
-              <div
-                class="h-10 w-10 flex-shrink-0 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
-                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor"
-                  viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
-              <div class="ml-4">
-                <div class="text-sm font-medium text-gray-900 dark:text-white">{{ diamerisma.name }}</div>
-              </div>
-            </div>
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ diamerisma.num }}</td>
+          <td class="px-2 py-4 whitespace-nowrap">
+
+            <div class="text-sm font-medium text-gray-900 dark:text-white">{{ diamerisma.name }}</div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td class="px-2 py-4 whitespace-nowrap">
             <span
               class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">
               {{ diamerisma.orofos }}ος
             </span>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.sizesm }} m²</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.owner }}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.guest }}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.sizesm }} m²</td>
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.owner }}</td>
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ diamerisma.guest }}</td>
+          <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
             <div class="flex items-center justify-end space-x-2">
               <a href="{% url 'koi:admin_diamerisma_edit' diamerisma.pk %}"
                 class="inline-flex items-center rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 transition-colors">
@@ -111,7 +100,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
-                Επεξεργασία
+
               </a>
               <a href="{% url 'koi:admin_diamerisma_delete' diamerisma.pk %}"
                 class="inline-flex items-center rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800 transition-colors">
@@ -119,7 +108,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
-                Διαγραφή
+
               </a>
             </div>
           </td>

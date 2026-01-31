@@ -59,43 +59,41 @@
       <thead class="bg-gray-50 dark:bg-gray-700">
         <tr>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID
           </th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Ημερομηνία</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Διαχειριστής</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Σχόλια</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Σύνολο</th>
           <th scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-            Κατάσταση</th>
+            class="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+          </th>
           <th scope="col"
-            class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            class="px-2 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
             Ενέργειες</th>
         </tr>
       </thead>
       <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
         {% for koin in koinoxrista_list %}
         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ koin.id }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <div class="ml-4">
-              <div class="text-sm font-medium text-gray-900 dark:text-white">{{ koin.ekdosi_gr }}</div>
-            </div>
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ koin.id }}</td>
+          <td class="px-2 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-900 dark:text-white">{{ koin.ekdosi_gr }}</div>
           </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ koin.diaxeiristis }}</td>
-          <td class="px-6 py-4 text-sm text-gray-900 dark:text-white max-w-xs truncate">
+          <td class="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ koin.diaxeiristis }}</td>
+          <td class="px-2 py-4 text-sm text-gray-900 dark:text-white max-w-xs truncate">
             {{ koin.sxolia|truncatechars:50 }}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">{{ koin.totals }}
+          <td class="px-2 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">{{ koin.totals }}
           </td>
-          <td class="px-6 py-4 whitespace-nowrap">
+          <td class="px-2 py-4 whitespace-nowrap">
             {% if koin.published %}
             <span
               class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -104,7 +102,7 @@
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                   clip-rule="evenodd" />
               </svg>
-              Δημοσιευμένο
+
             </span>
             {% else %}
             <span
@@ -114,7 +112,7 @@
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                   clip-rule="evenodd" />
               </svg>
-              Πρόχειρο
+
             </span>
             {% endif %}
           </td>
